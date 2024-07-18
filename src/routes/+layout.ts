@@ -19,14 +19,17 @@ export const load: LayoutLoad = async ({ data, depends, fetch }) => {
                 getAll() {
                     return (data as LayoutData)?.cookies ?? [];
                 },
+                setAll: (cookiesToSet) => {
+                    cookiesToSet.forEach(({ name, value, options }) => {
+                        (data as LayoutData)?.cookies.set(name, value, { ...options, path: "/" });
+                    });
+                  },
             },
         });
 
     const { data: { session } } = await supabase.auth.getSession();
 
-    const {
-        data: { user },
-    } = await supabase.auth.getUser();
+    const { data: { user } } = await supabase.auth.getUser();
 
     return { session, supabase, user };
 };

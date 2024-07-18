@@ -1,7 +1,6 @@
 <script lang="ts">
     let { data } = $props();
-    let { supabase, session, user } = data;
-
+    let { user, message } = data;
 </script>
 
 <main
@@ -10,7 +9,7 @@
     <div class="w-full p-8 bg-white rounded shadow-md max-w-7xl">
         DASHBOARD
         <div>
-            You are logged in as { user?.email }
+            You are logged in as { user?.email } { message }
         </div>
     </div>
 </main>

@@ -1,8 +1,9 @@
 <script lang="ts">
-    //import { goto } from "$app/navigation";
-    import type { SupabaseClient } from "@supabase/supabase-js";
+    import type { Provider, SupabaseClient } from "@supabase/supabase-js";
     import { addToast, ToastType } from "../../stores/toastStores";
     import Toast from "../common/feedback/Toast.svelte";
+    import { enhance } from "$app/forms";
+    import type { SubmitFunction } from "@sveltejs/kit";
 
     let { supabase }: { supabase: SupabaseClient } = $props();
     let email: string = $state("");
@@ -22,7 +23,26 @@
         }
 
         window.location.replace("/dashboard");
-        //await goto("/dashboard");
+    };
+
+    const signInWithProvider = async (provider: Provider) => {
+        const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: provider,
+        });
+    };
+
+    const submitSocialLogin: SubmitFunction = async ({ action, cancel }) => {
+        switch (action.searchParams.get("provider")) {
+            case "google":
+                await signInWithProvider("google");
+                break;
+            case "facebook":
+                await signInWithProvider("facebook");
+                break;
+            default:
+                break;
+        }
+        cancel();
     };
 </script>
 
@@ -64,6 +84,24 @@
                     <span class="ml-3"> Sign In </span>
                 </button>
             </div>
+
+            <div class="my-12 text-center border-b">
+                <div
+                    class="inline-block px-8 text-lg font-bold leading-none tracking-wide text-gray-600 transform translate-y-1/2 bg-white"
+                >
+                    Or
+                </div>
+            </div>
+
+            <form
+                
+                class="flex flex-col items-center sm:flex-row sm:justify-between sm:items-stretch sm:space-y-0 sm:space-x-0"
+                method="POST"
+            >
+                <button formaction="?/loginWithProvider&provider=facebook">Facebook</button>
+                <button formaction="?/loginWithProvider&provider=google">Google</button
+                >
+            </form>
         </div>
     </div>
 </div>

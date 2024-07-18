@@ -1,16 +1,6 @@
 <script lang="ts">
-    import { isBrowser } from "@supabase/ssr";
-
-    let {
-        data,
-    }: {
-        data: any;
-    } = $props();
-    let { supabase, session, user } = data;
-
-    if (isBrowser() && !session && window.location.pathname !== "/login") {
-        window.location.replace("/login");
-    }
+    let { data }: { data: any } = $props();
+    let { supabase, user } = data;
 
     const signOut = async () => {
         await supabase.auth.signOut();
