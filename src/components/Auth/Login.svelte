@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
-  import "$lib/fontawesome";
   import { addToast, ToastType } from "../../stores/toastStores";
   import Toast from "../common/feedback/Toast.svelte";
   import Koredor from "../common/icons/Koredor.svelte";
@@ -75,7 +73,7 @@
       <div class="max-w-xs mx-auto">
         <div class="mb-6">
           <label class="flex items-center gap-4 py-6 mt-5 input input-bordered">
-            <FontAwesomeIcon icon="envelope" />
+            <i class="fa-solid fa-envelope"></i>
             <input
               placeholder="Email"
               type="text"
@@ -89,7 +87,7 @@
         </div>
 
         <label class="flex items-center gap-4 py-6 mt-5 input input-bordered">
-          <FontAwesomeIcon icon="lock-open" />
+          <i class="fa-solid fa-lock"></i>
           <input
             type={showPassword ? "text" : "password"}
             class="p-2 bg-white grow"
@@ -100,9 +98,9 @@
           />
           <button onclick={togglePassword}>
             {#if showPassword}
-              <FontAwesomeIcon icon="eye-slash" />
+              <i class="fa-solid fa-eye-slash"></i>
             {:else}
-              <FontAwesomeIcon icon="eye" />
+              <i class="fa-solid fa-eye"></i>
             {/if}
           </button>
         </label>
@@ -111,7 +109,7 @@
           onclick={handleLogin}
           class="flex items-center justify-center w-full py-4 mt-5 font-semibold tracking-wide text-gray-100 transition-all duration-300 ease-in-out bg-orange-500 rounded-lg hover:bg-orange-700 focus:shadow-outline focus:outline-none"
         >
-          <FontAwesomeIcon icon="right-to-bracket" />
+          <i class="fa-solid fa-right-to-bracket"></i>
           <span class="ml-3"> Sign In </span>
         </button>
       </div>
@@ -140,7 +138,7 @@
           formaction="?/loginWithProvider&provider=facebook"
           class="flex items-center justify-center w-full px-4 py-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"
         >
-          <FontAwesomeIcon icon={["fab", "facebook"]} />
+          <i class="fa-brands fa-facebook-f"></i>
           <span class="ml-3">Facebook</span>
         </button>
 
@@ -148,7 +146,7 @@
           formaction="?/loginWithProvider&provider=google"
           class="flex items-center justify-center w-full px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-600"
         >
-          <FontAwesomeIcon icon={["fab", "google"]} />
+          <i class="fa-brands fa-google"></i>
           <span class="ml-3">Google</span>
         </button>
       </form>

@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
-  import "$lib/fontawesome";
   import Koredor from "../common/icons/Koredor.svelte";
   import { assembleFormData, parseResponse } from "$lib/formDataUtil";
   import { addToast, ToastType } from "../../stores/toastStores";
@@ -35,7 +33,7 @@
     });
 
     if (response.ok) {
-        console.log("++ OK ++");
+      console.log("++ OK ++");
       const parsedResponse: ParsedResponse = await parseResponse(response);
       const { success, message } = parsedResponse.data;
       if (success) {
@@ -56,7 +54,7 @@
   <h1 class="mb-10 text-xl font-bold xl:text-2xl">Sign Up</h1>
   <div class="mb-6">
     <label class="flex items-center gap-4 py-6 mt-5 input input-bordered">
-      <FontAwesomeIcon icon="id-card" />
+      <i class="fa-solid fa-id-card-clip"></i>
       <input
         placeholder="First Name"
         type="text"
@@ -70,7 +68,7 @@
   </div>
   <div class="mb-6">
     <label class="flex items-center gap-4 py-6 mt-5 input input-bordered">
-      <FontAwesomeIcon icon="id-card" />
+      <i class="fa-solid fa-id-card-clip"></i>
       <input
         placeholder="Last Name"
         type="text"
@@ -84,7 +82,7 @@
   </div>
   <div class="mb-6">
     <label class="flex items-center gap-4 py-6 mt-5 input input-bordered">
-      <FontAwesomeIcon icon="envelope" />
+      <i class="fa-solid fa-envelope"></i>
       <input
         type="email"
         class="p-2 bg-white grow"
@@ -97,7 +95,7 @@
   </div>
   <div class="mb-6">
     <label class="flex items-center gap-4 py-6 mt-5 input input-bordered">
-      <FontAwesomeIcon icon="lock-open" />
+      <i class="fa-solid fa-lock"></i>
       <input
         type={showPassword ? "text" : "password"}
         class="p-2 bg-white grow"
@@ -108,9 +106,9 @@
       />
       <button onclick={togglePassword}>
         {#if showPassword}
-          <FontAwesomeIcon icon="eye-slash" />
+          <i class="fa-solid fa-eye-slash"></i>
         {:else}
-          <FontAwesomeIcon icon="eye" />
+          <i class="fa-solid fa-eye"></i>
         {/if}
       </button>
     </label>
@@ -142,7 +140,7 @@
     onclick={handleSignUp}
     class="flex items-center justify-center w-full py-4 mt-5 font-semibold tracking-wide text-gray-100 transition-all duration-300 ease-in-out bg-orange-500 rounded-lg hover:bg-orange-700 focus:shadow-outline focus:outline-none"
   >
-    <FontAwesomeIcon icon="paper-plane" />
+    <i class="fa-solid fa-paper-plane"></i>
     <span class="ml-3">Sign Up</span></button
   >
 </div>

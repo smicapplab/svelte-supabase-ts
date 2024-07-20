@@ -10,6 +10,7 @@ import {
 import type { LayoutData, LayoutLoad } from "./$types";
 import { keysToCamelCase } from "$lib/types/caseConversion";
 import type { DatabaseProfile } from "$lib/types/profile";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export const load: LayoutLoad = async ({ data, depends, fetch }) => {
   depends("supabase:auth");
