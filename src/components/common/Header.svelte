@@ -113,10 +113,4 @@
       background-color: transparent; /* no hover effect */
       text-decoration: none; /* no hover effect */
     }
-
-    h2 {
-      pointer-events: none; 
-      background-color: transparent; /* no hover effect */
-      text-decoration: none; /* no hover effect */
-    }
   </style>
