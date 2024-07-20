@@ -1,6 +1,8 @@
 <script lang="ts">
     let { data } = $props();
-    let { user, message } = data;
+    let { user, message, profile } = data;
+
+    console.log(profile);
 </script>
 
 <main

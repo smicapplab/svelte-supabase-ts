@@ -76,9 +76,9 @@
             >
                 {@html getPath(toast.type)}
             </svg>
-            <span>{toast.message} {toast.type || "info"}</span>
+            <span>{toast.message}</span>
             <button
-                on:click={() => removeToast(toast.id)}
+                onclick={() => removeToast(toast.id)}
                 class="ml-auto btn btn-sm btn-circle btn-ghost">&times;</button
             >
         </div>
