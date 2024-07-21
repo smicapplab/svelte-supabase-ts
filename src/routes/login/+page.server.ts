@@ -23,14 +23,13 @@ export const actions: Actions = {
   },
   signInWithEmail: async ({ request, locals }) => {
     const { email, password } = await destructureFormData(request.formData()); 
-    console.log({ email, password });
     const { error } = await locals.supabase.auth.signInWithPassword({
       email: email,
       password: password,
     });
 
-    console.error("signInWithEmail", error);
     if( error ){
+      console.error("signInWithEmail", error);
       return {
         success: false,
         message: "Opps something went wrong!",
