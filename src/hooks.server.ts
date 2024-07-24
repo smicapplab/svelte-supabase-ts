@@ -6,6 +6,7 @@ import {
   PUBLIC_SUPABASE_URL,
   PUBLIC_SUPABASE_ANON_KEY,
 } from "$env/static/public";
+import { keysToCamelCase } from "$lib/types/caseConversion";
 
 const supabase: Handle = async ({ event, resolve }) => {
   event.locals.supabase = createServerClient(
@@ -56,7 +57,8 @@ const supabase: Handle = async ({ event, resolve }) => {
 const authGuard: Handle = async ({ event, resolve }) => {
   const { session, user } = await event.locals.safeGetSession();
   event.locals.session = session;
-  event.locals.user = user;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  event.locals.user = keysToCamelCase(user) as any;
 
   // Later, we can add more guards here
   if (!event.locals.session && event.url.pathname.startsWith("/dashboard")) {

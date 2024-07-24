@@ -1,6 +1,6 @@
 <svg
   class="w-auto h-12"
-  viewBox="0 0 104.2333 32.977615"
+  viewBox="0 0 110 33"
   version="1.1"
   id="svg1"
   xmlns="http://www.w3.org/2000/svg"

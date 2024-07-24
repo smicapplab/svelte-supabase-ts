@@ -3,7 +3,7 @@
   import Register from "../../components/Auth/Register.svelte";
   import Toast from "../../components/common/feedback/Toast.svelte";
   let { data } = $props();
-  let { supabase, session } = data;
+  let { session } = data;
 
   if (session) {
     window.location.replace("/dashboard");
@@ -20,7 +20,7 @@
 >
   <div class="w-full max-w-md p-8 bg-white rounded shadow-md">
     {#if isLogin}
-      <Login {supabase} />
+      <Login />
     {:else}
       <Register />
     {/if}

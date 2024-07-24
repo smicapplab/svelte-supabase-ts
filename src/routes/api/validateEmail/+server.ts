@@ -6,10 +6,21 @@ import {
 
 export const POST: RequestHandler = async ({ request, locals }) => {
   const { email } = await request.json();
+  const { data: userData } = await locals.supabase.rpc("check_email_exists", {
+    email_address: email,
+  });
+
+  if (userData) {
+    return json({
+      success: false,
+      message:
+        "Email is already registered. Please login instead or use another email.",
+    });
+  }
 
   const { data: profileData } = await locals.supabase
     .from("profiles")
-    .select("*")
+    .select("id")
     .eq("email", email)
     .single();
 
@@ -45,6 +56,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
   if (jsonResponse.text.toLowerCase() === "ok") {
     return json({
       success: true,
+      message: "Email updated successfully",
     });
   } else {
     return json({

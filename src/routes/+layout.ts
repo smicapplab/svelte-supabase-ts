@@ -57,7 +57,7 @@ export const load: LayoutLoad = async ({ data, depends, fetch }) => {
     return {
       session,
       supabase,
-      user,
+      user: user ? keysToCamelCase(user) : null,
       profile: profileData ? keysToCamelCase(profileData) : null,
     };
   }

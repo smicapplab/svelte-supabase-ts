@@ -19,7 +19,8 @@ declare global {
     interface PageData {
       supabase: ReturnType<typeof createServerClient>;
       session: Session | null;
-      user: User | null;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      user: Record<string, any> | null;
       profile: DatabaseProfile | null;
     }
     // interface PageState {}

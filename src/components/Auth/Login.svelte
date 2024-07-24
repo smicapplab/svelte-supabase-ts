@@ -5,6 +5,7 @@
   import { assembleFormData, parseResponse } from "$lib/formDataUtil";
   import type { ParsedResponse } from "$lib/types/apiResponse";
   import { onDestroy, onMount } from "svelte";
+  import { goto } from "$app/navigation";
 
   let email: string = $state("");
   let password: string = $state("");
@@ -115,7 +116,7 @@
       </div>
 
       <p class="mt-4 text-center text-gray-600">
-        <button
+        <button onclick={()=> goto("/login/forgot-password")}
           class="text-blue-500 underline bg-transparent border-none hover:text-blue-700 focus:outline-none"
         >
           Forgot your password?
