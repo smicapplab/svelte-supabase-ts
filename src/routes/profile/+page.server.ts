@@ -3,7 +3,7 @@ import { keysToCamelCase } from "$lib/types/caseConversion";
 import { superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";
 import type { PageData } from "../$types";
-import { emailSchema, profileSchema } from "$lib/validators/Profile";
+import { profileSchema } from "$lib/validators/Profile";
 
 export const load: PageData = async ({ locals }: { locals: App.Locals }) => {
   const { supabase, user } = locals;
@@ -39,8 +39,8 @@ export const actions: Actions = {
         form,
       };
     }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { firstName, middleName, lastName, mobileNumber, website } =
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       form.data as { [key: string]: any };
     const { supabase, user } = locals;
     try {
@@ -70,5 +70,8 @@ export const actions: Actions = {
         success: false,
       };
     }
-  }
+  },
+  // updatePassword: async ({ request, locals }) => {
+
+  // },
 };

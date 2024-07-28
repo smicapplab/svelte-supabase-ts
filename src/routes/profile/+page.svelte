@@ -1,10 +1,11 @@
 <script lang="ts">
   import Toast from "../../components/common/feedback/Toast.svelte";
-  import Company from "../../components/common/profile/Company.svelte";
-  import EmailUpdate from "../../components/common/profile/EmailUpdate.svelte";
-  import Personal from "../../components/common/profile/Personal.svelte";
-  import Security from "../../components/common/profile/Security.svelte";
+  import Company from "../../components/profile/Company.svelte";
+  import EmailUpdate from "../../components/profile/EmailUpdate.svelte";
+  import Personal from "../../components/profile/Personal.svelte";
+  import Security from "../../components/profile/Security.svelte";
   import { page } from '$app/stores';
+  import PasswordUpdate from "../../components/profile/PasswordUpdate.svelte";
 
   let props = $props();
   let tab = $page.url.searchParams.get("tab");
@@ -13,14 +14,17 @@
     {
       icon: "fa-solid fa-id-badge",
       text: "Personal Information",
+      textxs: "Personal",
     },
     {
       icon: "fa-solid fa-building",
       text: "Company Information",
+      textxs: "Company",
     },
     {
       icon: "fa-solid fa-shield-alt",
       text: "Security",
+      textxs: "Security",
     },
   ];
 
@@ -43,7 +47,10 @@
     {#each menuItems as item}
       <button
         class={`tab tab-lifted ${item.text === activeItem ? "tab-active tab-item-active" : ""}`}
-        onclick={() => handleNavClick(item.text)}>{item.text}</button
+        onclick={() => handleNavClick(item.text)}>
+        <span class="sm:hidden"><i class={item.icon}></i> {item.textxs}</span>
+        <span class="hidden sm:inline"><i class={item.icon}></i> {item.text}</span>
+        </button
       >
     {/each}
   </div>
@@ -57,6 +64,8 @@
     {/if}
   {:else if activeSubItem === "EmailUpdate"}
     <EmailUpdate {...props}/>
+  {:else if activeSubItem === "PasswordUpdate"}
+    <PasswordUpdate {...props} handleSubItemClick={handleSubItemClick} />
   {/if}
 </div>
 
@@ -88,6 +97,8 @@
       {/if}
     {:else if activeSubItem === "EmailUpdate"}
       <EmailUpdate {...props} handleSubItemClick={handleSubItemClick} />
+    {:else if activeSubItem === "PasswordUpdate"}
+      <PasswordUpdate {...props} handleSubItemClick={handleSubItemClick} />
     {/if}
   </div>
 </div>
@@ -100,8 +111,7 @@
     border-radius: 0 9999px 9999px 0;
   }
   .tab-item-active {
-    background-color: #f97316;
-    color: white;
+    font-weight: bold;
     border-radius: 15px 15px 0 0;
   }
 </style>

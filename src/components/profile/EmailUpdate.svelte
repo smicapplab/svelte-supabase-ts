@@ -1,5 +1,6 @@
 <script lang="ts">
-  import type { PageData } from "../../../routes/$types";
+  import type { PageData } from "../../routes/$types";
+
   let errorMessage = $state("");
   let isLoading: boolean = $state(false);
 
@@ -43,7 +44,6 @@
             errorMessage =
               "Sorry, something went wrong and we cannot save your changes. Please try again.";
           }
-
           handleSubItemClick("");
         } else {
           errorMessage = parsedResponse.message;
@@ -59,13 +59,12 @@
     }
   };
 </script>
-
-<div class="flex justify-center w-full p-5">
+<div class="flex justify-center w-full">
   <div
     class="w-full max-w-2xl p-5 border border-gray-300 shadow-sm card bg-base-100"
   >
     <h1 class="text-2xl font-bold">Email / Username Update</h1>
-    {#if user.appMetadata.provider === "email"}
+    {#if user?.appMetadata?.provider === "email"}
       <p class="pt-10 pb-10 text-sm text-gray-500">
         Your email is already linked to your Koredor account. Changing the email
         will also update your Koredor account username. Are you sure you want to

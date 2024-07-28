@@ -2,6 +2,7 @@ import { json, type RequestHandler } from "@sveltejs/kit";
 import {
   EMAIL_LIST_VERIFY_SECRET,
   EMAIL_LIST_VERIFY_URL,
+  ENVIRONMENT
 } from "$env/static/private";
 
 export const POST: RequestHandler = async ({ request, locals }) => {
@@ -32,6 +33,13 @@ export const POST: RequestHandler = async ({ request, locals }) => {
     });
   }
 
+  if(ENVIRONMENT === "dev"){
+    return json({
+      success: true,
+      message: "Email is Valid!",
+    });
+  }
+
   const response = await fetch(
     `${EMAIL_LIST_VERIFY_URL}secret=${EMAIL_LIST_VERIFY_SECRET}&email=${email}&timeout=15`
   );
@@ -56,7 +64,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
   if (jsonResponse.text.toLowerCase() === "ok") {
     return json({
       success: true,
-      message: "Email updated successfully",
+      message: "Email is Valid!",
     });
   } else {
     return json({
