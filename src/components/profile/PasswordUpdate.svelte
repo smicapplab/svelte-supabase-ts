@@ -1,8 +1,8 @@
 <script lang="ts">
   import { addToast, ToastType } from "../../stores/toastStores";
 
-  let password = $state("Bisdak4v3r!");
-  let newPassword = $state("Fl4xm4ster!");
+  let password = $state("");
+  let newPassword = $state("");
   let isLoading: boolean = $state(false);
   let apiError = $state("");
 
