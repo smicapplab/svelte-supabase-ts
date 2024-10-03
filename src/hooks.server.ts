@@ -56,6 +56,9 @@ const supabase: Handle = async ({ event, resolve }) => {
 
 const authGuard: Handle = async ({ event, resolve }) => {
   const { session, user } = await event.locals.safeGetSession();
+
+  console.log({user})
+
   event.locals.session = session;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   event.locals.user = keysToCamelCase(user) as any;
